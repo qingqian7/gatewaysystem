@@ -9,7 +9,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //任何地址都得得到认证
-        http.authorizeRequests().antMatchers("/**").authenticated();
-        http.httpBasic();
+        //http.authorizeRequests().antMatchers("/**").authenticated();
+        //http.httpBasic();
     }
 }

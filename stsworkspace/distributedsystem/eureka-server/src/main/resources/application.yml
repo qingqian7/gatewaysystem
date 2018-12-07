@@ -1,0 +1,42 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server
+
+  mail:
+    host: smtp.163.com
+    username: 18696423975@163.com
+    password: yenishukuang7
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+  boot:
+    admin:
+      notify:
+        mail:
+          to: 1346751649@qq.com
+          from: 18696423975@163.com
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://lijun:1234@localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: lijun
+    password: 1234
+

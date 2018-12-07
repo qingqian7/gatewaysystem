@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+        routes:
+        - id: comsumer
+          uri: http://localhost:8081/test
+          predicates:
+          - Path=/com/**
+          filters:
+          - AddRequestHeader=Authorizion,lijun
+          - AddResponseHeader=Authorizion,lijun123
+          - name: Retry
+            args:
+              retries: 3
+              series:
+              - SERVER_ERROR
+              methods:
+               - GET
+               - POST
+              exceptions:
+                - java.io.IOException
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://lijun:1234@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+ratelimit:
+  capacity: 10
+  refillToken: 1
+  duration: 1
